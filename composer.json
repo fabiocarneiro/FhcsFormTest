@@ -1,0 +1,14 @@
+{
+    "name": "fabiocarneiro/fhcsformtest",
+    "description": "Some test stuff",
+    "authors": [
+        {
+            "name": "Fabio Carneiro",
+            "email": "fahecs@gmail.com"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "2.2.*",
+        "doctrine/doctrine-orm-module": "0.*"
+    }
+}
