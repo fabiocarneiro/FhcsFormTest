@@ -26,7 +26,7 @@ class IndexController extends AbstractActionController {
         $freight->addProduct($product).
         $order->addFreight($freight);
         
-        $form = $this->getFormElementManager()->get('FhcsFormTest\Form\SomeForm');
+        $form = $this->getFormElementManager()->get('FhcsFormTest\Form\OrderFieldset');
         $form->bind($order);
         
         return array('form' => $form);
