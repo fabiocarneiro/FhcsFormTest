@@ -19,7 +19,7 @@ class FreightFieldset extends Fieldset {
     }
 
     public function init(){
-        $this->setHydrator(new DoctrineHydrator($this->getEntityManager()));
+        $this->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Freight'));
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Collection',
@@ -30,6 +30,6 @@ class FreightFieldset extends Fieldset {
                 )
             )
         ));
-        $this->get('products')->setHydrator(new DoctrineHydrator($this->getEntityManager()));
+        $this->get('products')->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Product'));
     }
 }

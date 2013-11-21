@@ -20,13 +20,28 @@ class IndexController extends AbstractActionController {
     }
     
     public function indexAction() {
+        //test products
+        $product1 = new Product();
+        $product1->setId(1);
+        $product1->setName('Some Nice Product');
+        
+        $product2 = new Product();
+        $product2->setId(2);
+        $product2->setName('Some Different Product');
+        
         $order = new Order();
-        $freight = new Freight();
-        $product = new Product();
-        $freight->addProduct($product).
+        
+        $freight = new Freight();  
+        $freight->addProduct($product1);
+        $freight->addProduct($product2);   
         $order->addFreight($freight);
         
-        $form = $this->getFormElementManager()->get('FhcsFormTest\Form\OrderFieldset');
+        $freight2 = new Freight();
+        $freight2->addProduct($product1);
+        $freight2->addProduct($product2);
+        $order->addFreight($freight2);
+        
+        $form = $this->getFormElementManager()->get('FhcsFormTest\Form\SomeForm');
         $form->bind($order);
         
         return array('form' => $form);
