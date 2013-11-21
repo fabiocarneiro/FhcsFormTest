@@ -2,14 +2,14 @@
 
 namespace FhcsFormTest\Form;
 
-use Zend\Form\Fieldset;
+use Zend\Form\Form;
 use FhcsFormTest\Entity\Order;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-class OrderFieldset extends Fieldset{
-    
+class OrderFieldset extends Form{
+
     protected $entityManager;
-    
+
     public function getEntityManager() {
         return $this->entityManager;
     }
@@ -29,5 +29,6 @@ class OrderFieldset extends Fieldset{
                 )
             )
         ));
+        $this->get('freights')->setHydrator(new DoctrineHydrator($this->getEntityManager()));
     }
 }

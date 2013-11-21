@@ -7,9 +7,9 @@ use FhcsFormTest\Entity\Freight;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class FreightFieldset extends Fieldset {
-    
+
     protected $entityManager;
-    
+
     public function getEntityManager() {
         return $this->entityManager;
     }
@@ -17,10 +17,10 @@ class FreightFieldset extends Fieldset {
     public function setEntityManager($entityManager) {
         $this->entityManager = $entityManager;
     }
-    
+
     public function init(){
-        $this->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Freight'))->setObject(new Freight());
-        
+        $this->setHydrator(new DoctrineHydrator($this->getEntityManager()));
+
         $this->add(array(
             'type' => 'Zend\Form\Element\Collection',
             'name' => 'products',
@@ -30,5 +30,6 @@ class FreightFieldset extends Fieldset {
                 )
             )
         ));
+        $this->get('products')->setHydrator(new DoctrineHydrator($this->getEntityManager()));
     }
 }

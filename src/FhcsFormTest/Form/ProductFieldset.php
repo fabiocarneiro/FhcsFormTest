@@ -20,7 +20,7 @@ class ProductFieldset extends Fieldset {
 
     public function init() {
         
-        $this->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Product'))->setObject(new Product());
+        $this->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Product'));
         
         $this->add(array(
             'type' => 'text',
