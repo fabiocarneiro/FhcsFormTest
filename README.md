@@ -9,4 +9,4 @@ application.config.php:
 
 dependencies:
 
-"doctrine/doctrine-orm-module": "0.*"
+"doctrine/doctrine-orm-module": "0.8.*"
