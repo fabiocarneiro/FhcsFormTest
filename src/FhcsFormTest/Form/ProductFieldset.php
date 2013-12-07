@@ -3,25 +3,9 @@
 namespace FhcsFormTest\Form;
 
 use Zend\Form\Fieldset;
-use FhcsFormTest\Entity\Product;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class ProductFieldset extends Fieldset {
-    
-    protected $entityManager;
-    
-    public function getEntityManager() {
-        return $this->entityManager;
-    }
-
-    public function setEntityManager($entityManager) {
-        $this->entityManager = $entityManager;
-    }
-
     public function init() {
-        
-        $this->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'FhcsFormTest\Entity\Product'));
-        
         $this->add(array(
             'type' => 'text',
             'name' => 'id',
@@ -29,7 +13,7 @@ class ProductFieldset extends Fieldset {
                 'label' => 'id'
             )
         ));
-        
+
         $this->add(array(
             'type' => 'text',
             'name' => 'name',
@@ -37,7 +21,7 @@ class ProductFieldset extends Fieldset {
                 'label' => 'Name'
             )
         ));
-       
+
     }
 
 }
