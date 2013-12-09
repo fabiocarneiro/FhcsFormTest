@@ -3,6 +3,7 @@
 namespace FhcsFormTest\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use FhcsFormTest\Entity\Order;
 use FhcsFormTest\Entity\Product;
@@ -24,18 +25,18 @@ class Freight {
      **/
     protected $order;
     /**
-     * @ORM\ManyToMany(targetEntity="FhcsFormTest\Entity\Product")
+     * @ORM\ManyToMany(targetEntity="FhcsFormTest\Entity\Product", cascade={"persist"})
      * @ORM\JoinTable
      *      joinColumns={@JoinColumn},
      *      inverseJoinColumns={@JoinColumn}
      *      )
      **/
     protected $products;
-    
+
     function __construct() {
         $this->products = new ArrayCollection();
     }
-    
+
     public function getId() {
         return $this->id;
     }
@@ -59,9 +60,18 @@ class Freight {
     public function setProducts(ArrayCollection $products) {
         $this->products = $products;
     }
-    
-    public function addProduct(Product $product){
-        $this->products->add($product);
+
+    public function addProducts(Collection $products)
+    {
+        foreach ($products as $product) {
+            $this->products->add($product);
+        }
     }
 
+    public function removeProducts(Collection $products)
+    {
+        foreach ($products as $product) {
+            $this->products->removeElement($product);
+        }
+    }
 }
