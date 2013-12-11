@@ -44,7 +44,7 @@ class IndexController extends AbstractActionController {
             ),
         );
 
-        $form->setData($data));
+        $form->setData($data);
         $form->isValid();
 
         // Returns a validated, filtered and hydrated instance of FhcsFormTest\Entity\Order ;)
