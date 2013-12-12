@@ -2,6 +2,9 @@
 
 namespace FhcsFormTest\Controller;
 
+use FhcsFormTest\Entity\Freight;
+use FhcsFormTest\Entity\Order;
+use FhcsFormTest\Entity\Product;
 use Zend\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController {
@@ -19,36 +22,26 @@ class IndexController extends AbstractActionController {
     public function indexAction() {
         $form = $this->getFormElementManager()->get('FhcsFormTest\Form\SomeForm');
 
-        $data = array(
-            'order' => array(
-                'freights' => array(
-                    array(
-                        'products' => array(
-                            array('name' => 'product 1'),
-                        ),
-                    ),
-                    array(
-                        'products' => array(
-                            array('name' => 'product 2'),
-                            array('name' => 'product 3'),
-                        ),
-                    ),
-                    array(
-                        'products' => array(
-                            array('name' => 'product 4'),
-                            array('name' => 'product 5'),
-                            array('name' => 'product 6'),
-                        ),
-                    ),
-                ),
-            ),
-        );
+        $freight1 = new Freight;
+        $freight2 = new Freight;
+        $freight3 = new Freight;
 
-        $form->setData($data);
-        $form->isValid();
+        $freight1->addProduct(new Product('Product 1'));
 
-        // Returns a validated, filtered and hydrated instance of FhcsFormTest\Entity\Order ;)
-        var_dump($form->getData());
+        $freight2->addProduct(new Product('Product 2'));
+        $freight2->addProduct(new Product('Product 3'));
+
+        $freight3->addProduct(new Product('Product 4'));
+        $freight3->addProduct(new Product('Product 5'));
+        $freight3->addProduct(new Product('Product 6'));
+
+        $order = new Order;
+
+        $order->addFreight($freight1);
+        $order->addFreight($freight2);
+        $order->addFreight($freight3);
+
+        $form->bind($order);
 
         return array('form' => $form);
     }
