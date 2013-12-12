@@ -39,6 +39,11 @@ class Order {
         $this->freights = $freights;
     }
 
+    public function addFreight(Freight $freight)
+    {
+        $this->freights->add($freight);
+    }
+
     public function addFreights(Collection $freights)
     {
         foreach ($freights as $freight) {
