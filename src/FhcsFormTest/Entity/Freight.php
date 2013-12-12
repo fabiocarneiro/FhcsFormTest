@@ -57,6 +57,11 @@ class Freight {
         $this->products = $products;
     }
 
+    public function addProduct(Product $product)
+    {
+        $this->products->add($product);
+    }
+
     public function addProducts(Collection $products)
     {
         foreach ($products as $product) {
