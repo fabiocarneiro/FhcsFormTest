@@ -41,10 +41,6 @@ class Freight {
         return $this->id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
-    }
-
     public function getOrder() {
         return $this->order;
     }
@@ -59,6 +55,11 @@ class Freight {
 
     public function setProducts(ArrayCollection $products) {
         $this->products = $products;
+    }
+
+    public function addProduct(Product $product)
+    {
+        $this->products->add($product);
     }
 
     public function addProducts(Collection $products)

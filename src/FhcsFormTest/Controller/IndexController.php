@@ -2,6 +2,9 @@
 
 namespace FhcsFormTest\Controller;
 
+use FhcsFormTest\Entity\Freight;
+use FhcsFormTest\Entity\Order;
+use FhcsFormTest\Entity\Product;
 use Zend\Mvc\Controller\AbstractActionController;
 use Doctrine\Common\Collections\ArrayCollection;
 use FhcsFormTest\Entity\Order;
@@ -36,25 +39,25 @@ class IndexController extends AbstractActionController {
 
     public function indexAction() {
 
-        $product1 = new Product();
+        $product1 = new Product;
         $product1->setName('Some Nice Product');
         
-        $product2 = new Product();
+        $product2 = new Product;
         $product2->setName('Some Different Product');
         
         $productCollection = new ArrayCollection();
         $productCollection->add($product1);
         $productCollection->add($product2);
         
-        $order = new Order();
+        $order = new Order;
         
-        $freight = new Freight();  
+        $freight = new Freight;  
         $freight->addProducts($productCollection);
         $freightCollection1 = new ArrayCollection();
         $freightCollection1->add($freight);
         $order->addFreights($freightCollection1);
         
-        $freight2 = new Freight();
+        $freight2 = new Freight;
         
         $freight2->addProducts($productCollection);
         $freightCollection2 = new ArrayCollection();
@@ -62,13 +65,7 @@ class IndexController extends AbstractActionController {
         $order->addFreights($freightCollection2);
         
         $form = $this->getFormElementManager()->get('FhcsFormTest\Form\SomeForm');
-        $form->bind($order); // error occurs here
-
-        //$form->setData($data);
-        //$form->isValid();
-
-        // Returns a validated, filtered and hydrated instance of FhcsFormTest\Entity\Order ;)
-        //var_dump($form->getData());
+        $form->bind($order);
 
         return array('form' => $form);
     }

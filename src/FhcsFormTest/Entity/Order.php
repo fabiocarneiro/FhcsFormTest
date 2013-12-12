@@ -31,16 +31,17 @@ class Order {
         return $this->id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
-    }
-
     public function getFreights() {
         return $this->freights;
     }
 
     public function setFreights(ArrayCollection $freights) {
         $this->freights = $freights;
+    }
+
+    public function addFreight(Freight $freight)
+    {
+        $this->freights->add($freight);
     }
 
     public function addFreights(Collection $freights)
