@@ -19,6 +19,13 @@ class Product {
      */
     protected $name;
 
+    public function __construct($name = null)
+    {
+        if (null !== $name) {
+            $this->name = $name;
+        }
+    }
+
     public function getId() {
         return $this->id;
     }
